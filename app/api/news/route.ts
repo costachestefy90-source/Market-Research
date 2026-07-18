@@ -53,7 +53,7 @@ export async function GET(req: NextRequest) {
     feeds.map(async (feed) => {
       const res = await fetch(feed.url, {
         headers: { "User-Agent": "Mozilla/5.0" },
-        next: { revalidate: 300 },
+        cache: "no-store",
       });
       if (!res.ok) return [];
       const xml = await res.text();

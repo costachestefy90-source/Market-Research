@@ -251,6 +251,29 @@ export default function WallStreetPage() {
     loadPicks();
   }, []);
 
+  useEffect(() => {
+    if (topPicks.length === 0 || thoughts) return;
+    async function autoGenerateThoughts() {
+      setLoadingThoughts(true);
+      try {
+        const analystContext = `Current Wall Street consensus for major stocks:\n${topPicks.map((p) => `${p.symbol}: ${p.recommendation} — $${p.price} (target $${p.targetMean}, ${p.numberOfAnalysts} analysts, ${p.strongBuy + p.buy} buy vs ${p.sell + p.strongSell} sell)`).join("\n")}`;
+        const prompt = `Give me your market thoughts for today based on this Wall Street analyst data:\n\n${analystContext}\n\nProvide:\n1. Current market regime (bull/bear/transition)\n2. Key risks and catalysts ahead\n3. Sector rotation opportunities\n4. What smart money is doing\n5. Your bold prediction for the next 30 days\n\nBe specific with tickers, levels, and percentages. Take a clear stance.`;
+        const res = await fetch("/api/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: prompt }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setThoughts(data.answer || "");
+        }
+      } finally {
+        setLoadingThoughts(false);
+      }
+    }
+    autoGenerateThoughts();
+  }, [topPicks, thoughts]);
+
   function handleSearch(value: string) {
     setQuery(value);
     if (searchTimeout.current) clearTimeout(searchTimeout.current);
