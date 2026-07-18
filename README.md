@@ -1,75 +1,96 @@
 # Market Research
 
-A full-stack market research platform with live data, AI-powered analysis, and interactive TradingView charts.
+A market research platform with live data, real-time charts, AI analysis, and Wall Street ratings.
 
-## Features
+**Live site: [market-f1b17ll97-steff3.vercel.app](https://market-f1b17ll97-steff3.vercel.app/)**
 
-- **Stock Search** — search any stock, ETF, or index with real-time TradingView charts and favorites
-- **Wall Street Ratings** — analyst consensus, price targets, upgrade/downgrade history for any stock
-- **Market News** — real-time news feed with AI impact analysis and discussion per article
-- **AI Q&A** — ask any market question, get detailed analyst-grade responses with PDF export
-- **Crypto Dashboard** — live BTC/ETH/SOL charts, CoinGecko prices, DeFi TVL
-- **Market Overview** — S&P 500, BTC, VIX metrics with Fear & Greed gauge
-- **Watchlist Alerts** — set price target alerts with browser notifications
-- **Research Articles** — original analysis on breadth, on-chain data, yield curve, sector rotation
-- **Draggable Layouts** — resize and rearrange dashboard widgets, positions saved locally
-- **EN/RO Language Support** — full bilingual interface
-- **Dark/Light Theme**
+---
+
+## What It Does
+
+| Page | What you get |
+|------|-------------|
+| **Stocks** | Search any stock/ETF/index, see live TradingView charts, save favorites |
+| **Wall Street** | Analyst ratings (buy/sell/hold), price targets, recent upgrades/downgrades, AI market thoughts |
+| **News** | Real-time market news with AI-powered impact analysis and chat discussion |
+| **Ask** | Ask any market question, get a detailed response, download as PDF |
+| **Dashboard** | S&P 500, BTC, VIX overview with Fear & Greed gauge |
+| **Crypto** | Live BTC/ETH/SOL charts and prices |
+| **Alerts** | Set price alerts on any stock, get browser notifications when hit |
+| **Research** | 5 original analysis articles (breadth, on-chain, yield curve, sector rotation, prediction markets) |
+
+**Other features:** drag & resize any chart/widget, dark/light theme, English/Romanian language toggle.
+
+---
+
+## Use It
+
+### Just visit the website
+
+Go to **[the live site](https://market-f1b17ll97-steff3.vercel.app/)** — everything works, no setup needed.
+
+### Run it yourself
+
+1. **Clone and install**
+   ```bash
+   git clone https://github.com/costachestefy90-source/Market.git
+   cd Market
+   npm install
+   ```
+
+2. **Add your AI key** (optional — only needed for AI Q&A, news analysis, and market thoughts)
+
+   Create a file called `.env.local` in the root folder:
+   ```
+   GROQ_API_KEY=your_key_here
+   ```
+   Get a free key at [console.groq.com](https://console.groq.com) (takes 30 seconds).
+
+3. **Start**
+   ```bash
+   npm run dev
+   ```
+   Open [localhost:3000](http://localhost:3000).
+
+> **Note:** Stock search, charts, Wall Street ratings, crypto data, news feed, and alerts all work without an API key. The key is only needed for AI-powered features.
+
+---
 
 ## Tech Stack
 
-- **Next.js 15** (App Router, TypeScript, Turbopack)
-- **TradingView Widgets** (real-time embedded charts)
-- **Tailwind CSS v4** + **shadcn/ui**
-- **Groq API** (Llama 3.3 70B for AI Q&A)
-- **react-grid-layout** (draggable/resizable dashboards)
-- **Yahoo Finance API** (quotes, search, analyst data)
-- **CoinGecko + DeFi Llama** (crypto data)
-- **Alternative.me** (Fear & Greed Index)
-
-## Setup
-
-```bash
-git clone https://github.com/costachestefy90-source/Market.git
-cd Market
-npm install
-```
-
-Create `.env.local`:
-
-```
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-Get a free Groq API key at [console.groq.com](https://console.groq.com).
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-## Deploy
-
-1. Push to GitHub
-2. Import repo at [vercel.com](https://vercel.com)
-3. Add `GROQ_API_KEY` environment variable
-4. Deploy
+| Category | Technology |
+|----------|-----------|
+| Framework | Next.js 15 (App Router, TypeScript) |
+| Styling | Tailwind CSS v4, shadcn/ui |
+| Charts | TradingView embedded widgets (real-time) |
+| AI | Groq API with Llama 3.3 70B |
+| Layouts | react-grid-layout (drag & resize) |
 
 ## Data Sources
 
-All data comes from free, public APIs:
+All free, no paid APIs:
 
-| Source | Data |
-|--------|------|
-| Yahoo Finance | Stock quotes, search, analyst ratings |
-| TradingView | Real-time interactive charts (embedded widgets) |
-| CoinGecko | Crypto prices, market caps |
-| DeFi Llama | DeFi TVL data |
-| Alternative.me | Crypto Fear & Greed Index |
-| Google News RSS | Market news feed |
-| Groq (Llama 3.3) | AI-powered analysis |
+| Source | What it provides |
+|--------|-----------------|
+| **Yahoo Finance** | Stock quotes, search, analyst ratings & price targets |
+| **TradingView** | Real-time interactive charts (free embedded widgets) |
+| **CoinGecko** | Crypto prices and market caps |
+| **DeFi Llama** | DeFi total value locked |
+| **Alternative.me** | Crypto Fear & Greed Index |
+| **Google News RSS** | Market news feed |
+| **Groq** | AI-powered analysis (free tier) |
+
+---
+
+## Deploy Your Own
+
+1. Fork this repo
+2. Go to [vercel.com](https://vercel.com) and import it
+3. Add `GROQ_API_KEY` in Settings > Environment Variables
+4. Deploy — you'll get a live URL in ~60 seconds
+
+---
 
 ## License
 
-MIT
+MIT — use it however you want.
