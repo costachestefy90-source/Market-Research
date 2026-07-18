@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Sidebar } from "@/components/sidebar";
 import { I18nProvider } from "@/lib/i18n";
+import { AlertChecker } from "@/components/alert-checker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
         <ThemeProvider>
           <I18nProvider>
             <Sidebar />
+            <AlertChecker />
             <main className="flex-1 overflow-y-auto">{children}</main>
           </I18nProvider>
         </ThemeProvider>

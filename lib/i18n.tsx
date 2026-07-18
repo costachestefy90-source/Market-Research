@@ -79,6 +79,9 @@ const translations = {
     marketThoughtsDesc: "AI-generated market outlook based on current conditions",
     generateThoughts: "Generate Market Thoughts",
     thoughtsPrompt: "What's your take on the market right now?",
+    alertsTitle: "Watchlist Alerts",
+    alertsDesc: "Set price alerts — get notified when stocks hit your targets",
+    createAlert: "Create Alert",
   },
   ro: {
     home: "Acasă",
@@ -154,6 +157,9 @@ const translations = {
     marketThoughtsDesc: "Perspectivă AI bazată pe condițiile actuale ale pieței",
     generateThoughts: "Generează Gânduri pe Piață",
     thoughtsPrompt: "Care e perspectiva ta asupra pieței acum?",
+    alertsTitle: "Alerte Watchlist",
+    alertsDesc: "Setează alerte de preț — primești notificări când acțiunile ating țintele",
+    createAlert: "Creează Alertă",
   },
 } as const;
 

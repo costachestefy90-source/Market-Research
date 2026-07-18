@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { cachedFetch, ONE_MIN } from "@/lib/cache";
 
 const YAHOO_CHART = "https://query1.finance.yahoo.com/v8/finance/chart/";
 
@@ -66,7 +67,9 @@ export async function GET(req: NextRequest) {
   }
 
   const list = symbols.split(",").slice(0, 20);
-  const results = await Promise.all(list.map(fetchFullQuote));
+  const results = await Promise.all(
+    list.map((s) => cachedFetch(`quote-${s}`, () => fetchFullQuote(s), ONE_MIN))
+  );
 
   const quotes: Record<string, unknown> = {};
   list.forEach((s, i) => {

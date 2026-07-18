@@ -289,7 +289,7 @@ Respond as a senior market analyst. Be specific about tickers, sectors, price ta
         {/* Analysis / Chat panel */}
         {selectedNews && (
           <div className="lg:w-[480px] shrink-0 lg:sticky lg:top-6 lg:self-start">
-            <Card className="h-[calc(100vh-8rem)] flex flex-col">
+            <Card className="h-[calc(100vh-8rem)] lg:h-[calc(100vh-8rem)] max-h-[600px] lg:max-h-none flex flex-col">
               <CardHeader className="pb-2 shrink-0">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">

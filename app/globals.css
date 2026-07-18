@@ -140,6 +140,21 @@
   .react-resizable-handle {
     z-index: 10;
   }
+  @media (max-width: 768px) {
+    .draggable-grid .react-grid-item {
+      position: relative !important;
+      transform: none !important;
+      width: 100% !important;
+      left: 0 !important;
+      margin-bottom: 1rem;
+    }
+    .draggable-grid {
+      height: auto !important;
+    }
+    .react-resizable-handle {
+      display: none;
+    }
+  }
 }
 
 @layer base {

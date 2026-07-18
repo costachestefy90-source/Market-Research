@@ -42,7 +42,7 @@ function TradingViewWidgetInner({
       support_host: "https://www.tradingview.com",
       height: autosize ? "100%" : height,
       width: "100%",
-      hide_side_toolbar: false,
+      hide_side_toolbar: window.innerWidth < 768,
       withdateranges: true,
       hide_volume: false,
       calendar: false,
@@ -54,7 +54,7 @@ function TradingViewWidgetInner({
   return (
     <div
       ref={containerRef}
-      style={{ height: autosize ? "100%" : height, width: "100%" }}
+      style={{ height: autosize ? "100%" : height, minHeight: 300, width: "100%" }}
     />
   );
 }

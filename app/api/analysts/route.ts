@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cachedFetch, FIVE_MIN } from "@/lib/cache";
 
 interface AnalystData {
   symbol: string;
@@ -103,14 +104,22 @@ export async function GET(req: NextRequest) {
   const symbols = req.nextUrl.searchParams.get("symbols");
 
   if (symbol) {
-    const data = await fetchAnalystData(symbol);
+    const data = await cachedFetch<AnalystData | null>(
+      `analyst-${symbol}`,
+      () => fetchAnalystData(symbol),
+      FIVE_MIN
+    );
     if (!data) return NextResponse.json({ error: "Not found" }, { status: 404 });
     return NextResponse.json(data);
   }
 
   if (symbols) {
     const list = symbols.split(",").slice(0, 10);
-    const results = await Promise.all(list.map(fetchAnalystData));
+    const results = await Promise.all(
+      list.map((s) =>
+        cachedFetch<AnalystData | null>(`analyst-${s}`, () => fetchAnalystData(s), FIVE_MIN)
+      )
+    );
     const data: Record<string, AnalystData> = {};
     results.forEach((r) => {
       if (r) data[r.symbol] = r;

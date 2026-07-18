@@ -13,6 +13,7 @@ import { DraggableGrid, type GridItem } from "@/components/draggable-grid";
 import { TrendingUp, TrendingDown, Minus, Loader2, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
+import { FearGreedGauge } from "@/components/fear-greed-gauge";
 
 interface QuoteData {
   price: number;
@@ -91,6 +92,15 @@ export default function DashboardPage() {
         defaultW: 4, defaultH: 2, minW: 3, minH: 2,
         content: (
           <MetricCard label="VIX" value={data.vix?.price?.toFixed(1) || "—"} change={data.vix?.change || 0} />
+        ),
+      },
+      {
+        id: "fear-greed",
+        defaultW: 4, defaultH: 4, minW: 3, minH: 3,
+        content: (
+          <DragCard title="Sentiment">
+            <FearGreedGauge />
+          </DragCard>
         ),
       },
       {

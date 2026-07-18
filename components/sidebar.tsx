@@ -13,6 +13,7 @@ import {
   MessageSquare,
   Landmark,
   Newspaper,
+  Bell,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -70,6 +71,7 @@ function NavContent() {
     },
     { href: "/wall-street", label: t("wallStreet"), icon: Landmark },
     { href: "/news", label: t("newsTitle"), icon: Newspaper },
+    { href: "/alerts", label: t("alertsTitle"), icon: Bell },
     { href: "/ask", label: t("ask"), icon: MessageSquare },
   ];
 
