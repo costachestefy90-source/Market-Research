@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Market Research
 
-## Getting Started
+A full-stack market research platform with live data, AI-powered analysis, and interactive TradingView charts.
 
-First, run the development server:
+## Features
+
+- **Stock Search** — search any stock, ETF, or index with real-time TradingView charts and favorites
+- **Wall Street Ratings** — analyst consensus, price targets, upgrade/downgrade history for any stock
+- **Market News** — real-time news feed with AI impact analysis and discussion per article
+- **AI Q&A** — ask any market question, get detailed analyst-grade responses with PDF export
+- **Crypto Dashboard** — live BTC/ETH/SOL charts, CoinGecko prices, DeFi TVL
+- **Market Overview** — S&P 500, BTC, VIX metrics with Fear & Greed gauge
+- **Watchlist Alerts** — set price target alerts with browser notifications
+- **Research Articles** — original analysis on breadth, on-chain data, yield curve, sector rotation
+- **Draggable Layouts** — resize and rearrange dashboard widgets, positions saved locally
+- **EN/RO Language Support** — full bilingual interface
+- **Dark/Light Theme**
+
+## Tech Stack
+
+- **Next.js 15** (App Router, TypeScript, Turbopack)
+- **TradingView Widgets** (real-time embedded charts)
+- **Tailwind CSS v4** + **shadcn/ui**
+- **Groq API** (Llama 3.3 70B for AI Q&A)
+- **react-grid-layout** (draggable/resizable dashboards)
+- **Yahoo Finance API** (quotes, search, analyst data)
+- **CoinGecko + DeFi Llama** (crypto data)
+- **Alternative.me** (Fear & Greed Index)
+
+## Setup
+
+```bash
+git clone https://github.com/costachestefy90-source/Market.git
+cd Market
+npm install
+```
+
+Create `.env.local`:
+
+```
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+Get a free Groq API key at [console.groq.com](https://console.groq.com).
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Push to GitHub
+2. Import repo at [vercel.com](https://vercel.com)
+3. Add `GROQ_API_KEY` environment variable
+4. Deploy
 
-## Learn More
+## Data Sources
 
-To learn more about Next.js, take a look at the following resources:
+All data comes from free, public APIs:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Source | Data |
+|--------|------|
+| Yahoo Finance | Stock quotes, search, analyst ratings |
+| TradingView | Real-time interactive charts (embedded widgets) |
+| CoinGecko | Crypto prices, market caps |
+| DeFi Llama | DeFi TVL data |
+| Alternative.me | Crypto Fear & Greed Index |
+| Google News RSS | Market news feed |
+| Groq (Llama 3.3) | AI-powered analysis |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
