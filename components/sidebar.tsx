@@ -11,6 +11,7 @@ import {
   CandlestickChart,
   Menu,
   MessageSquare,
+  Landmark,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -66,6 +67,7 @@ function NavContent() {
         { href: "/dashboard/crypto", label: t("crypto"), icon: Bitcoin },
       ],
     },
+    { href: "/wall-street", label: t("wallStreet"), icon: Landmark },
     { href: "/ask", label: t("ask"), icon: MessageSquare },
   ];
 
