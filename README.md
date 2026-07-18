@@ -93,4 +93,4 @@ All free, no paid APIs:
 
 ## License
 
-MIT — use it however you want.
+MIT 
