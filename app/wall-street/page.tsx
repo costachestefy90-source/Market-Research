@@ -21,6 +21,8 @@ import {
   X,
   ArrowUpRight,
   ArrowDownRight,
+  Brain,
+  Send,
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
@@ -214,6 +216,9 @@ export default function WallStreetPage() {
   const [loadingSelected, setLoadingSelected] = useState(false);
   const [topPicks, setTopPicks] = useState<AnalystData[]>([]);
   const [loadingPicks, setLoadingPicks] = useState(true);
+  const [thoughts, setThoughts] = useState("");
+  const [loadingThoughts, setLoadingThoughts] = useState(false);
+  const [thoughtsInput, setThoughtsInput] = useState("");
   const searchTimeout = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const fetchAnalyst = useCallback(async (symbol: string) => {
@@ -344,6 +349,65 @@ export default function WallStreetPage() {
           <AnalystCard data={selected} />
         </div>
       )}
+
+      {/* Market Thoughts */}
+      <Card className="mb-8">
+        <CardHeader>
+          <CardTitle className="text-base flex items-center gap-2">
+            <Brain className="h-5 w-5 text-purple-500" />
+            {t("marketThoughts")}
+          </CardTitle>
+          <CardDescription>{t("marketThoughtsDesc")}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const q = thoughtsInput.trim() || t("thoughtsPrompt");
+              setLoadingThoughts(true);
+              try {
+                const analystContext = topPicks.length > 0
+                  ? `\n\nCurrent Wall Street consensus for major stocks:\n${topPicks.map((p) => `${p.symbol}: ${p.recommendation} — $${p.price} (target $${p.targetMean}, ${p.numberOfAnalysts} analysts, ${p.strongBuy + p.buy} buy vs ${p.sell + p.strongSell} sell)`).join("\n")}`
+                  : "";
+                const prompt = `${q}${analystContext}\n\nProvide detailed market thoughts as a senior Wall Street strategist. Cover:\n1. Current market regime (bull/bear/transition)\n2. Key risks and catalysts ahead\n3. Sector rotation opportunities\n4. What smart money is doing\n5. Your bold prediction for the next 30 days\n\nBe specific with tickers, levels, and percentages. Take a clear stance — don't hedge.`;
+                const res = await fetch("/api/ask", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ question: prompt }),
+                });
+                if (res.ok) {
+                  const data = await res.json();
+                  setThoughts(data.answer || "");
+                }
+              } finally {
+                setLoadingThoughts(false);
+              }
+            }}
+            className="flex gap-2 mb-4"
+          >
+            <Input
+              placeholder={t("thoughtsPrompt")}
+              value={thoughtsInput}
+              onChange={(e) => setThoughtsInput(e.target.value)}
+              className="text-sm"
+            />
+            <Button type="submit" disabled={loadingThoughts}>
+              {loadingThoughts ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+            </Button>
+          </form>
+          {loadingThoughts && (
+            <div className="flex items-center gap-3 py-8 justify-center">
+              <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">{t("analyzing")}</span>
+            </div>
+          )}
+          {thoughts && !loadingThoughts && (
+            <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap text-sm">
+              {thoughts}
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Top picks grid */}
       <h2 className="text-lg font-semibold mb-4">{t("topPicks")}</h2>
