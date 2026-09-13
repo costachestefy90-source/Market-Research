@@ -2,7 +2,7 @@
 
 A market research platform with live data, real-time charts, AI analysis, and Wall Street ratings.
 
-**Live site: [market-f1b17ll97-steff3.vercel.app](market-git-main-steff3.vercel.app)**
+**Live site: [market-taupe-beta.vercel.app](https://market-taupe-beta.vercel.app/)**
 
 ---
 
@@ -27,14 +27,14 @@ A market research platform with live data, real-time charts, AI analysis, and Wa
 
 ### Just visit the website
 
-Go to **[the live site](https://market-f1b17ll97-steff3.vercel.app/)** — everything works, no setup needed.
+Go to **[the live site](https://market-taupe-beta.vercel.app/)** — everything works, no setup needed.
 
 ### Run it yourself
 
 1. **Clone and install**
    ```bash
-   git clone https://github.com/costachestefy90-source/Market.git
-   cd Market
+   git clone https://github.com/costachestefy90-source/Market-Research.git
+   cd Market-Research
    npm install
    ```
 
@@ -63,7 +63,7 @@ Go to **[the live site](https://market-f1b17ll97-steff3.vercel.app/)** — every
 | Framework | Next.js 15 (App Router, TypeScript) |
 | Styling | Tailwind CSS v4, shadcn/ui |
 | Charts | TradingView embedded widgets (real-time) |
-| AI | Groq API with Llama 3.3 70B |
+| AI | Groq API with GPT-OSS 120B |
 | Layouts | react-grid-layout (drag & resize) |
 
 ## Data Sources
