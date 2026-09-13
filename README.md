@@ -2,8 +2,7 @@
 
 A market research platform with live data, real-time charts, AI analysis, and Wall Street ratings.
 
-**Live site: [market-f1b17ll97-steff3.vercel.app](market-steff3.vercel.app
-)**
+**Live site: [market-f1b17ll97-steff3.vercel.app](market-git-main-steff3.vercel.app)**
 
 ---
 
